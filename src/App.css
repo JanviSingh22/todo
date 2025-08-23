@@ -1,38 +1,152 @@
-.App {
-  text-align: center;
-}
+/* App wrapper is controlled by inline styles for ambient background */
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* File grid / card layout */
+.file-stack {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+/* Note-taking dialog box */
+.dialog-box {
+  margin: 40px auto 24px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  background: #f1f1f1;
+  width: 360px;
+  max-width: 90vw;
+  text-align: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease;
 }
 
-@keyframes App-logo-spin {
+.dialog-box:hover {
+  background: #e0e0e0;
+}
+
+/* File modal (when you open a note) */
+.file-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 500;
+  cursor: pointer;
+}
+
+.file-modal {
+  background-color: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  width: 400px;
+  max-width: 90vw;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  animation: fadeInScale 0.25s ease forwards;
+  position: relative;
+  cursor: default;
+}
+
+/* Updated Close Button Style */
+.close-btn {
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  background-color: #6200ee;
+  color: #fff;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+/* Add & Delete buttons row */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+/* Position close button at top-right */
+.file-modal .close-btn-top {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: #6200ee;
+  font-size: 1rem;
+  padding: 4px 10px;
+}
+
+.close-btn:hover {
+  background-color: #4b00bb;
+}
+
+/* Animation */
+@keyframes fadeInScale {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: scale(0.95);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: scale(1);
   }
+}
+
+/* Responsive layout tweaks */
+@media screen and (max-width: 500px) {
+  .dialog-box {
+    width: 90%;
+    padding: 12px 16px;
+  }
+
+  .file-modal {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* Todo list item container: flex layout with space between text and delete button */
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.todo-delete-btn {
+  background: transparent;
+  border: none;
+  color: #d32f2f;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.todo-delete-btn:hover {
+  color: #a00000;
+}
+
+.todo-text-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+}
+.todo-text {
+  font-size: 1rem;
+  color: #333;
 }
