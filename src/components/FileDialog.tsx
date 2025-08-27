@@ -3,7 +3,7 @@ import './FileDialog.css';
 
 interface FileDialogProps {
   onClose: () => void;
-  onCreate: (title: string, color: string) => void;
+  onCreate: (title: string, color: string) => void; // used when passing a function as a prop
 }
 
 const FileDialog: React.FC<FileDialogProps> = ({ onClose, onCreate }) => {
