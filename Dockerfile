@@ -1,18 +1,21 @@
-FROM node:20-alpine AS build
-
-ENV NODE_ENV development
-ENV Browser = none
+FROM node:18
 
 WORKDIR /my-app
 
-COPY package.json package-lock.json ./
-
+# Install dependencies
+COPY package*.json ./
 RUN npm install
 
 COPY . .
+
+# ENV for React dev server
+ENV HOST=0.0.0.0
+ENV PORT=3000
+ENV BROWSER=none
 
 RUN npm run build
 
 EXPOSE 3000
 
 CMD ["npm", "start"]
+
